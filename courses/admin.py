@@ -8,7 +8,7 @@ class SubjectAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
 
 
-class ModuleInline(admin.stackedInline):
+class ModuleInline(admin.StackedInline):
     model = Module
 
 
