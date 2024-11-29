@@ -1,3 +1,4 @@
+from students.forms import CourseEnrollForm
 from django.http import HttpRequest
 from django.http.response import HttpResponse as HttpResponse
 from django.views.generic.list import ListView
@@ -191,3 +192,11 @@ class CourseListView(TemplateResponseMixin, View):
 class CourseDetailView(DetailView):
     model = Course
     template_name = 'courses/course/detail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['enroll_form'] = CourseEnrollForm(
+            initial={'course': self.object}
+        )
+
+        return context
